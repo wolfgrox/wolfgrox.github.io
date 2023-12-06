@@ -1,98 +1,123 @@
-// AGREGA CLASE boxCardAnimated AL HACER SCROLL PARA ANIMAR COMPONENTE CARD 
-window.onscroll = function() {
 
-    let scrollPosY = window.pageYOffset | document.body.scrollTop;
+const headerMenu=document.querySelector('.hm-header');
 
-    if (scrollPosY >= 400) {
-        subir = document.querySelector('#subir');
-        subir.classList.add("irArriba");
-    } else {
-        subir = document.querySelector('#subir');
-        subir.classList.remove("irArriba");
+console.log(headerMenu.offsetTop);
+
+window.addEventListener('scroll',()=>{
+    if(window.pageYOffset > 80){
+        headerMenu.classList.add('header-fixed');
+    }else{
+        headerMenu.classList.remove('header-fixed');
+    }
+})
+
+/*=========================================
+    Tabs
+==========================================*/
+if(document.querySelector('.hm-tabs')){
+
+    const tabLinks=document.querySelectorAll('.hm-tab-link');
+    const tabsContent=document.querySelectorAll('.tabs-content');
+
+    tabLinks[0].classList.add('active');
+
+    if(document.querySelector('.tabs-content')){
+        tabsContent[0].classList.add('tab-active');
+    }
+    
+
+    for (let i = 0; i < tabLinks.length; i++) {
+        
+        tabLinks[i].addEventListener('click',()=>{
+
+            
+            tabLinks.forEach((tab) => tab.classList.remove('active'));
+            tabLinks[i].classList.add('active');
+            
+            tabsContent.forEach((tabCont) => tabCont.classList.remove('tab-active'));
+            tabsContent[i].classList.add('tab-active');
+            
+        });
+        
     }
 
-    if (scrollPosY >= 910) {
-        cardAnimated = document.getElementById('cardAnimada');
-        cardAnimated.classList.add("boxCardAnimated");
-    } else {
-        cardAnimated = document.getElementById('cardAnimada');
-        cardAnimated.classList.remove("boxCardAnimated");
-    }
+}
 
-};
+/*=========================================
+    MENU
+==========================================*/
 
+const menu=document.querySelector('.icon-menu');
+const menuClose=document.querySelector('.cerrar-menu');
 
-// AGREGA CLASE current AL HACER SCROLL 
-let mainNavLinks = document.querySelectorAll("nav div ul li a");
+menu.addEventListener('click',()=>{
+    document.querySelector('.header-menu-movil').classList.add('active');
+})
 
-window.addEventListener("scroll", event => {
-    event.preventDefault();
+menuClose.addEventListener('click',()=>{
+    document.querySelector('.header-menu-movil').classList.remove('active');
+})
 
-    let fromTop = window.scrollY;
+/*======================================
+     FORMULARIO
+========================================*/
 
-    mainNavLinks.forEach(link => {
-        let section = document.querySelector(link.hash);
-        if (
-            section.offsetTop <= fromTop &&
-            section.offsetTop + section.offsetHeight > fromTop
-        ) {
-            link.classList.add("current");
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-form");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Recopilar los datos del formulario
+        const formData = new FormData(form);
+
+        // Validación en JavaScript 
+        const nombre = formData.get("nombre-completo");
+        const email = formData.get("email");
+        const telefono = formData.get("telefono");
+        const asunto = formData.get("asunto");
+
+        if (nombre.trim() === "") {
+            alert("Por favor, ingrese un nombre válido.");
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            alert("Por favor, ingrese una dirección de correo electrónico válida.");
+            return;
+        }
+
+        if (!validatePhone(telefono)) {
+            alert("Por favor, ingrese un número de teléfono válido.");
+            return;
+        }
+
+        if (asunto.trim() === "") {
+            alert("Por favor, ingrese un asunto.");
+            return;
+        }
+
+    
+        // Enviar datos a través de una solicitud Fetch
+        const response = await fetch("https://formsubmit.co/nahuelzelaya89@gmail.com", {
+            method: "POST",
+            body: formData,
+        });
+
+        if (response.ok) {
+            alert("Mensaje enviado con éxito");
+            form.reset();
         } else {
-            link.classList.remove("current");
+            alert("Ocurrió un error al enviar el mensaje. Inténtalo de nuevo más tarde.");
         }
     });
+
+    function validateEmail(email) {
+        const emailRegex = /\S+@\S+\.\S+/;
+        return emailRegex.test(email);
+    }
+
+    function validatePhone(telefono) {
+        return /^\d{10,}$/.test(telefono);
+    }
 });
-
-
-// DESPLAZAMIENTO SMOOTH SCROLL
-window.onload = function() {
-
-    const easeInCubic = function(t) { return t * t * t }
-    const scrollElems = document.getElementsByClassName('scroll');
-
-    const scrollToElem = (start, stamp, duration, scrollEndElemTop, startScrollOffset) => {
-
-        const runtime = stamp - start;
-        let progress = runtime / duration;
-        const ease = easeInCubic(progress);
-
-        progress = Math.min(progress, 1);
-
-        const newScrollOffset = startScrollOffset + (scrollEndElemTop * ease);
-        window.scroll(0, startScrollOffset + (scrollEndElemTop * ease));
-
-        if (runtime < duration) {
-            requestAnimationFrame((timestamp) => {
-                const stamp = new Date().getTime();
-                scrollToElem(start, stamp, duration, scrollEndElemTop, startScrollOffset);
-            })
-        }
-    }
-
-    for (let i = 0; i < scrollElems.length; i++) {
-        const elem = scrollElems[i];
-
-        elem.addEventListener('click', function(e) {
-            e.preventDefault();
-            const scrollElemId = e.target.href.split('#')[1];
-            const scrollEndElem = document.getElementById(scrollElemId);
-
-            const anim = requestAnimationFrame(() => {
-                const stamp = new Date().getTime();
-                const duration = 1200;
-                const start = stamp;
-
-                const startScrollOffset = window.pageYOffset;
-
-                const scrollEndElemTop = scrollEndElem.getBoundingClientRect().top;
-
-                scrollToElem(start, stamp, duration, scrollEndElemTop, startScrollOffset);
-            })
-        })
-    }
-}
-
-function enviarMensaje() {
-    alert('Mensaje enviado con éxito!');
-    document.getElementById("miForm").reset();
-}
