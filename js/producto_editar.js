@@ -8,7 +8,7 @@ return {
 id:0,
 nombre:"",
 imagen:"",
-stock:0,
+descripcion:"",
 precio:0,
 url:'https://wolfgrox.pythonanywhere.com/productos/' + id,
 }
@@ -23,7 +23,7 @@ console.log(data)
 this.id=data.id
 this.nombre = data.nombre;
 this.imagen=data.imagen
-this.stock=data.stock
+this.descripcion=data.descripcion
 this.precio=data.precio
 })
 .catch(err => {
@@ -35,7 +35,7 @@ modificar() {
 let producto = {
 nombre:this.nombre,
 precio: this.precio,
-stock: this.stock,
+descripcion: this.descripcion,
 imagen:this.imagen
 }
 var options = {

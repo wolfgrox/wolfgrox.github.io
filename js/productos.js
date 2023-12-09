@@ -12,7 +12,7 @@ cargando:true,
 id:0,
 nombre:"",
 imagen:"",
-stock:0,
+descripcion:"",
 precio:0,
 }
 },
@@ -44,7 +44,7 @@ grabar(){
 let producto = {
 nombre:this.nombre,
 precio: this.precio,
-stock: this.stock,
+descripcion: this.descripcion,
 imagen:this.imagen
 }
 var options = {

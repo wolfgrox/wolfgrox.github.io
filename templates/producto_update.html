@@ -13,35 +13,37 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
 <!-- place navbar here -->
 </header>
 <main>
-<div class="container" id="app">
-<form style="background-color: aliceblue;margin:10px auto ; width: 400px; padding: 20px;">
-<h2>Editar Producto </h2>
-<p>Precio:{{precio}}</p>
-<div class="mb-3">
-<label for="id">Id</label>
-<input type="number" name="id" id="id" disabled v-model="id" >
-</div>
-<div class="mb-3">
-<label for="nombre">Nombre</label>
-<input type="text" name="nombre" id="nombre" v-model="nombre">
-</div>
-<div class="mb-3">
-<label for="precio">Precio</label>
-<input type="number" name="precio" id="precio" v-model="precio">
-</div>
-<div class="mb-3">
-<label for="stock">Stock</label>
-<input type="number" name="stock" id="stock" v-model="stock">
-</div>
-<div class="mb-3">
-<label for="imagen">Imagen</label>
-<input type="text" name="imagen" id="imagen" v-model="imagen">
-<img width="100" :src="imagen" alt="">
-</div>
-<button type="button" class="btn btn-success" v-on:click="modificar()">Grabar</button>
-</form>
-</div>
+    <div class="container" id="app">
+        <form style="background-color: #f67f00fd; margin: 10px auto; width: 400px; padding: 20px;">
+            <h2>Editar Producto</h2>
+            <p>Precio: {{precio}}</p>
+            <div class="mb-3">
+                <label for="id" class="form-label">Id</label>
+                <input type="number" name="id" id="id" class="form-control" disabled v-model="id">
+            </div>
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" v-model="nombre">
+            </div>
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="number" name="precio" id="precio" class="form-control" v-model="precio">
+            </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <textarea name="descripcion" id="descripcion" class="form-control" rows="3" v-model="descripcion"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input type="text" name="imagen" id="imagen" class="form-control" v-model="imagen">
+                <img width="100" :src="imagen" alt="">
+            </div>
+            <button type="button" class="btn btn-success" v-on:click="modificar()">Grabar</button>
+        </form>
+    </div>
 </main>
+
+
 <footer>
 <!-- place footer here -->
 </footer>

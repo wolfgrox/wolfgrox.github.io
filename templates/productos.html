@@ -13,53 +13,54 @@ crossorigin="anonymous">
 <!-- place navbar here -->
 </header>
 <main>
-<div id="app" class="container">
-<h1>Productos</h1>
-<br>
-<a class="btn btn-primary" href="/templates/producto_nuevo.html">Nuevo</a>
-<br><br>
-<div v-if="error">
-<p>Lo sentimos , ........</p>
-</div>
-<div v-else>
-<section v-if="cargando">
-<div class="spinner-border"></div>
-<p>Cargando .....</p>
-</section>
-<section v-else>
-<div class="table-responsive">
-<table class="table table-bordered">
-<thead>
-<tr>
-<th scope="col">Id</th>
-<th scope="col">Nombre</th>
-<th scope="col">Precio</th>
-<th scope="col">Stock</th>
-<th scope="col">Imagen</th>
-<th scope="col">Acciones</th>
-</tr>
-</thead>
-<tbody>
-<tr class="" v-for="producto in productos">
-<td scope="row">{{producto.id}}</td>
-<td>{{producto.nombre}}</td>
-<td>{{producto.precio}}</td>
-<td>{{producto.stock}}</td>
-<td>
-<img width="60" :src="producto.imagen" :alt="producto.nombre">
-</td>
-<td>
-<a class="btn btn-primary" :href="'./producto_update.html?id='+ producto.id" >Editar</a>
-<button type="button" class="btn btn-danger" v-on:click="eliminar(producto.id)" >Eliminar</button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</div>
-</div>
+    <div class="container" id="app">
+        <h1>PRODUCTOS EN PROMOCION</h1>
+        <br>
+        <a class="btn btn-primary" href="/templates/producto_nuevo.html">Nuevo</a>
+        <br><br>
+        <div v-if="error">
+            <p>Si no logra ver los datos, por favor actualice la pagina</p>
+        </div>
+        <div v-else>
+            <section v-if="cargando">
+                <div class="spinner-border"></div>
+                <p>Cargando, por favor esperep>
+            </section>
+            <section v-else>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="" v-for="producto in productos">
+                                <td scope="row">{{producto.id}}</td>
+                                <td>{{producto.nombre}}</td>
+                                <td>{{producto.precio}}</td>
+                                <td>{{producto.descripcion}}</td>
+                                <td>
+                                    <img width="60" :src="producto.imagen" :alt="producto.nombre">
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" :href="'./producto_update.html?id='+ producto.id">Editar</a>
+                                    <button type="button" class="btn btn-danger" v-on:click="eliminar(producto.id)">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
 </main>
+
 <footer>
 <!-- place footer here -->
 </footer>
