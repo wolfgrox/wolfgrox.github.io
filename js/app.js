@@ -121,3 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return /^\d{10,}$/.test(telefono);
     }
 });
+
+
+

@@ -910,3 +910,76 @@ main {
     background: var(--color-primary-hover);
   }
   
+
+
+
+  /* Estilos para el formulario de inicio de sesión */
+#loginForm {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#loginForm h2 {
+    text-align: center;
+    color: #333;
+}
+
+#loginForm label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+#loginForm input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#loginForm button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f67f00fd;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#loginForm button:hover {
+    background-color: #f15c06;
+}
+
+/* Estilos para la sección de redes sociales */
+.wrap-social-logos {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.social-logo {
+    max-width: 50px;
+    width: 100%;
+    padding: 5px;
+    margin: 0 10px;
+}
+
+/* Estilos para el pie de página */
+.foo-copy {
+    text-align: center;
+    padding: 20px 0;
+    background: #000;
+    color: #fff;
+}
+
+.foo-copy p {
+    font-size: 14px;
+    font-weight: 300;
+    margin: 0;
+}
